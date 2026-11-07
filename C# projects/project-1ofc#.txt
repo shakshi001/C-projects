@@ -1,0 +1,37 @@
+using System;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+       int marks;
+       Console.WriteLine("Kindly, enter your marks");
+       marks = Convert.ToInt32(Console.ReadLine());
+       
+       if(marks>=90 && marks<=100)
+       {
+           Console.WriteLine("Your grade is A");
+       }
+       else if(marks>=80 && marks<90)
+       {
+           Console.WriteLine("Your garde is B");
+       }
+       else if(marks>=70 && marks<80)
+       {
+           Console.WriteLine("Your garde is C");
+       }
+       else if(marks>=50 && marks<60)
+       {
+           Console.WriteLine("Your grade is D");
+       }
+       else if(marks>=0 && marks<50)
+       {
+           Console.WriteLine("Your grade is F");
+       }
+       else
+       {
+           Console.WriteLine("enter valid marks ... Errorrr");
+       }
+       
+    }
+}

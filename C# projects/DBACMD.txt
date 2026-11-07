@@ -1,0 +1,103 @@
+Microsoft Windows [Version 10.0.19045.7725]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\hp>mysql -u root -p;
+'mysql' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\hp>mysqldump -u root -p;
+'mysqldump' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\hp>where mysqldump
+INFO: Could not find files for the given pattern(s).
+
+C:\Users\hp>
+C:\Users\hp>where /R "C:\Program Files\MySQL" mysqldump.exe
+C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe
+
+C:\Users\hp>
+C:\Users\hp>
+C:\Users\hp>
+C:\Users\hp>
+C:\Users\hp>where /R "C:\Program Files\MySQL" mysqldump.exe
+C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe
+
+C:\Users\hp>"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe" -u root -p
+Usage: mysqldump [OPTIONS] database [tables]
+OR     mysqldump [OPTIONS] --databases [OPTIONS] DB1 [DB2 DB3...]
+OR     mysqldump [OPTIONS] --all-databases [OPTIONS]
+For more options, use mysqldump --help
+
+C:\Users\hp>"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe" -u root -p hr > hr_backup.sql
+Enter password: ***********
+mysqldump: Got error: 1049: Unknown database 'hr' when selecting the database
+
+C:\Users\hp>"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe" -u root -p
+Usage: mysqldump [OPTIONS] database [tables]
+OR     mysqldump [OPTIONS] --databases [OPTIONS] DB1 [DB2 DB3...]
+OR     mysqldump [OPTIONS] --all-databases [OPTIONS]
+For more options, use mysqldump --help
+
+C:\Users\hp>"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe" -u root -p
+Usage: mysqldump [OPTIONS] database [tables]
+OR     mysqldump [OPTIONS] --databases [OPTIONS] DB1 [DB2 DB3...]
+OR     mysqldump [OPTIONS] --all-databases [OPTIONS]
+For more options, use mysqldump --help
+
+C:\Users\hp>"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p -e "SHOW DATABASES;"
+Enter password: ***********
++--------------------+
+| Database           |
++--------------------+
+| company_db         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sampledb           |
+| sys                |
++--------------------+
+
+C:\Users\hp>mysql -u root -p company_db < gg.sql;
+The system cannot find the file specified.
+
+C:\Users\hp>mysql -u root -p company_db < gg.sql;
+The system cannot find the file specified.
+
+C:\Users\hp>"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe" -u root -p company_db > company_db_backup.sql
+Enter password: ***********
+
+C:\Users\hp>"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p company_db < company_db_backup.sql
+Enter password: ************
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+
+C:\Users\hp>"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p company_db < company_db_backup.sql
+Enter password: ***********
+
+C:\Users\hp>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

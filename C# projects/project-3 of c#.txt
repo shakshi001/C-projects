@@ -1,0 +1,28 @@
+using System;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+       String name;
+       Console.WriteLine("kindly , enter any name...");
+       name = Console.ReadLine();
+       int cntVowels = 0;
+       int cntCons = 0;
+       for(int ch = 0; ch<name.Length; ch++)
+       {
+           char i = Char.ToLower(name[ch]);
+           
+           if( i == 'a' || i == 'e' || i == 'i' || i == 'o' || i == 'u')
+           {
+               cntVowels++;
+           }
+           else if(Char.IsLetter(i))
+           {
+               cntCons++;
+           }
+       }
+       Console.WriteLine("No of Vowels : "+cntVowels);
+       Console.WriteLine("No of Consoants: "+cntCons);
+    }
+}

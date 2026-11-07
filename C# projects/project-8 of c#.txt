@@ -1,0 +1,71 @@
+using System;
+
+
+class Information
+{
+    string name;
+    int pin;
+    public void info(string name , int pin)
+    {
+        this.name = name;
+        this.pin = pin;
+        
+        Console.WriteLine("customer name "+name);
+        Console.WriteLine("cutomer pin"+pin);
+        Console.WriteLine("Coustomer verification completed ...");
+    }
+}
+
+class CheckBalance:Information
+{
+    int balance;
+    
+    public void bal(int balance)
+    {
+        this.balance = balance;
+        
+        Console.WriteLine("balance : "+balance);
+    }
+}
+
+class Deposit:Information
+{
+    int currentbal;
+    int balance;
+    
+    public void deposit(int currentbal , int balance)
+    {
+        currentbal += balance;
+        Console.WriteLine("balance updated sucessfully "+currentbal);
+    }
+}
+
+class Withdrawl:Information
+{
+    int currentbal;
+    int balance;
+    
+    public void withdr(int currentbal , int balance)
+    {
+        this.currentbal = currentbal;
+        this.balance = balance;
+        currentbal -= balance;
+        
+        Console.WriteLine("withdrwal of money "+balance);
+    }
+}
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+         Deposit c1 = new Deposit();
+         c1.info("shakshi" , 1234);
+         c1.deposit(1000 , 100);
+         
+         CheckBalance c2 = new CheckBalance();
+         c2.bal(1000);
+         
+        Withdrawl c3 = new Withdrawl();
+         c3.withdr(1000 , 700);
+    }
+}

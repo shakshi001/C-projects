@@ -1,0 +1,28 @@
+public class HelloWorld
+
+{
+    
+    static double area(int tbase , int height)
+    {
+        return 0.5*tbase*height;
+    }
+    
+    static float area(float side)
+    {
+        return side*side;
+    }
+    
+    static double area(double lenght , double breadth )
+    {
+        return lenght*breadth;
+    }
+    public static void Main(string[] args)
+    {
+        double triangle = area(4 ,3);
+       Console.WriteLine("Area of  triangle : "+triangle);
+       float square = area(2);
+       Console.WriteLine("Area of Square : "+square);
+       double rectangle = area(2.1 , 3.2);
+       Console.WriteLine("Area of rectangle : "+rectangle);
+    }
+}

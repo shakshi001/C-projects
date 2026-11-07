@@ -1,0 +1,48 @@
+using System;
+
+
+class RegisterVehicle
+{
+    string ownername;
+    string vehicletype;
+    string model;
+    
+    public void register(string ownername , string vehicletype , string model)
+    {
+        this.ownername = ownername;
+        this.vehicletype = vehicletype;
+        this.model = model;
+        
+        Console.WriteLine("ownername : "+ownername);
+        Console.WriteLine("VehicleType : "+vehicletype);
+        Console.WriteLine("model: "+model);
+    }
+}
+
+class InsuranceTracker:RegisterVehicle
+{
+    public void documentationVerify(int ans)
+    {
+        Console.WriteLine("Aadhar card submitted...");
+        Console.WriteLine("Pan card submitted...");
+        Console.WriteLine("Applied For Insurance...");
+        if(ans==1)
+        {
+            Console.WriteLine("Insurance application is on progress");
+        }
+        else
+        {
+            Console.WriteLine("Sorry , Submit the required document");
+        }
+    }
+}
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        InsuranceTracker c1 = new InsuranceTracker();
+        
+        c1.register("shakshi","nano","car");
+        c1.documentationVerify(0);
+    }
+}

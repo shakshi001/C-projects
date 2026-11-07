@@ -1,0 +1,459 @@
+_Enter password: ***********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASE
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DATABASE' at line 1
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sampledb           |
+| sys                |
++--------------------+
+5 rows in set (0.23 sec)
+
+mysql> CREATE DATABASE company_db;
+Query OK, 1 row affected (0.07 sec)
+
+mysql> USE company_db;
+Database changed
+mysql> CREATE TABLE employee (employee_id INT PRIMARY KEY , employee_name VARCHAR(20) , department VARCHAR(20) , designation VARCHAR(50) , salary INT , email VARCHAR(50));
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> INSERT INTO employee VALUES (1 , 'Rohit' , 'ECE' , 'AP' , 85000 , 'rohit@gmail.com');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO employee VALUES (2 , 'Raj' , 'ECE' , 'AP' , 95000 , 'raj@gmail.com');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (3, 'ami' , 'ECE' , 'AP' , 85000 , 'ami@gmail.com');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (4, 'bees' , 'ECE' , 'AP' , 75000 , 'bees@gmail.com');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (5, 'flyies' , 'ECE' , 'AP' , 45000 , 'flyies@gmail.com');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (6, 'arpit' , 'EEE' , 'RR' , 45000 , 'flyies@gmail.com');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> CREATE USER 'hr_user'@'localhost' IDENTIFIED BY 'hr';
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> CREATE USER 'report_user'@'localhost' IDENTIFIED BY 'report';
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> CREATE USER 'admin_user'@'localhost' IDENTIFIED BY 'admin';
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> GRANT SELECT , INSERT , UPDATE  ON company_db TO 'hr_user'@'localhost';
+ERROR 1146 (42S02): Table 'company_db.company_db' doesn't exist
+mysql> GRANT SELECT , INSERT , UPDATE  ON company_db.employee TO 'hr_user'@'localhost';
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> GRANT SELECT  ON company_db.employee TO 'hr_user'@'localhost';
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> GRANT SELECT  ON company_db.employee TO 'hr_user'@'localhost';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> GRANT ALL PRIVILEGES ON compnay_db.employee TO 'admin_user'@'localhost';
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> SHOW GRANTS FOR 'hr_user'@'localhost';
++----------------------------------------------------------------------------------+
+| Grants for hr_user@localhost                                                     |
++----------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `hr_user`@`localhost`                                      |
+| GRANT SELECT, INSERT, UPDATE ON `company_db`.`employee` TO `hr_user`@`localhost` |
++----------------------------------------------------------------------------------+
+2 rows in set (0.02 sec)
+
+mysql> SHOW GRANTS FOR 'report_user'@'localhost';
++-------------------------------------------------+
+| Grants for report_user@localhost                |
++-------------------------------------------------+
+| GRANT USAGE ON *.* TO `report_user`@`localhost` |
++-------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW GRANTS FOR 'admin_user'@'localhost';
++-----------------------------------------------------------------------------+
+| Grants for admin_user@localhost                                             |
++-----------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `admin_user`@`localhost`                              |
+| GRANT ALL PRIVILEGES ON `compnay_db`.`employee` TO `admin_user`@`localhost` |
++-----------------------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> REVOKE UPDATE ON company_db.employee FROM 'hr_user'@'localhost';
+Query OK, 0 rows affected (0.36 sec)
+
+mysql> SHOW GRANTS FOR 'hr_user'@'localhost';
++--------------------------------------------------------------------------+
+| Grants for hr_user@localhost                                             |
++--------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `hr_user`@`localhost`                              |
+| GRANT SELECT, INSERT ON `company_db`.`employee` TO `hr_user`@`localhost` |
++--------------------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> ALTER USER 'hr_user'@'localhost' IDENTIFIED BY 'hr@#123';
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> SHOW VARIABLES LIKE 'validate_password%';
+Empty set (0.08 sec)
+
+mysql> INSTALL COMPONENT 'file://component_validate_password';
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> SHOW VARIABLES LIKE 'validate_password%';
++-------------------------------------------------+--------+
+| Variable_name                                   | Value  |
++-------------------------------------------------+--------+
+| validate_password.changed_characters_percentage | 0      |
+| validate_password.check_user_name               | ON     |
+| validate_password.dictionary_file               |        |
+| validate_password.length                        | 8      |
+| validate_password.mixed_case_count              | 1      |
+| validate_password.number_count                  | 1      |
+| validate_password.policy                        | MEDIUM |
+| validate_password.special_char_count            | 1      |
++-------------------------------------------------+--------+
+8 rows in set (0.02 sec)
+
+mysql> SHOW VARIABLES LIKE 'validate_password%';
++-------------------------------------------------+--------+
+| Variable_name                                   | Value  |
++-------------------------------------------------+--------+
+| validate_password.changed_characters_percentage | 0      |
+| validate_password.check_user_name               | ON     |
+| validate_password.dictionary_file               |        |
+| validate_password.length                        | 8      |
+| validate_password.mixed_case_count              | 1      |
+| validate_password.number_count                  | 1      |
+| validate_password.policy                        | MEDIUM |
+| validate_password.special_char_count            | 1      |
++-------------------------------------------------+--------+
+8 rows in set (0.01 sec)
+
+mysql> SELECT user , host , pulgin , account_locked FROM mysql.user;
+ERROR 1054 (42S22): Unknown column 'pulgin' in 'field list'
+mysql> SELECT user , host , plugin , account_locked FROM mysql.user;
++------------------+-----------+-----------------------+----------------+
+| user             | host      | plugin                | account_locked |
++------------------+-----------+-----------------------+----------------+
+| admin_user       | localhost | caching_sha2_password | N              |
+| hr_user          | localhost | caching_sha2_password | N              |
+| mysql.infoschema | localhost | caching_sha2_password | Y              |
+| mysql.session    | localhost | caching_sha2_password | Y              |
+| mysql.sys        | localhost | caching_sha2_password | Y              |
+| report_user      | localhost | caching_sha2_password | N              |
+| root             | localhost | caching_sha2_password | N              |
+| slaveUser        | localhost | caching_sha2_password | N              |
++------------------+-----------+-----------------------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> CREATE USER 'hr_user'@'%' IDENTIFIED BY 'hr123@asA';
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> SELECT user , host , plugin , account_locked FROM mysql.user;
++------------------+-----------+-----------------------+----------------+
+| user             | host      | plugin                | account_locked |
++------------------+-----------+-----------------------+----------------+
+| hr_user          | %         | caching_sha2_password | N              |
+| admin_user       | localhost | caching_sha2_password | N              |
+| hr_user          | localhost | caching_sha2_password | N              |
+| mysql.infoschema | localhost | caching_sha2_password | Y              |
+| mysql.session    | localhost | caching_sha2_password | Y              |
+| mysql.sys        | localhost | caching_sha2_password | Y              |
+| report_user      | localhost | caching_sha2_password | N              |
+| root             | localhost | caching_sha2_password | N              |
+| slaveUser        | localhost | caching_sha2_password | N              |
++------------------+-----------+-----------------------+----------------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT user , host , plugin , account_locked FROM mysql.user WHERE user='root';
++------+-----------+-----------------------+----------------+
+| user | host      | plugin                | account_locked |
++------+-----------+-----------------------+----------------+
+| root | localhost | caching_sha2_password | N              |
++------+-----------+-----------------------+----------------+
+1 row in set (0.01 sec)
+
+mysql> SHOW VARIABLES LIKE 'gereral_log';
+Empty set (0.02 sec)
+
+mysql> SHOW VARIABLES LIKE 'general_log';
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| general_log   | OFF   |
++---------------+-------+
+1 row in set (0.01 sec)
+
+mysql> SET GLOBAL general_log=ON;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> SHOW VARIABLES LIKE 'general_log_file';
++------------------+---------------------+
+| Variable_name    | Value               |
++------------------+---------------------+
+| general_log_file | DESKTOP-9OGC3L5.log |
++------------------+---------------------+
+1 row in set (0.01 sec)
+
+mysql> SHOW VARIABLES LIKE 'datadir';
++---------------+---------------------------------------------+
+| Variable_name | Value                                       |
++---------------+---------------------------------------------+
+| datadir       | C:\ProgramData\MySQL\MySQL Server 8.0\Data\ |
++---------------+---------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> DROP TABLE employee;
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> USE company_db;
+Database changed
+mysql> SHOW TABLES;
+Empty set (0.11 sec)
+
+mysql>  CREATE TABLE employee (employee_id INT PRIMARY KEY , employee_name VARCHAR(20) , department VARCHAR(20) , designation VARCHAR(50) , salary INT , email VARCHAR(50));
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> Query OK, 0 rows affected (0.18 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (1 , 'Rohit' , 'ECE' , 'AP' , 85000 , 'rohit@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 0 rows affected (0.18 sec)
+
+mysql> INSERT INTO employee VALUES (1 , 'R' at line 1
+mysql> Query OK, 1 row affected (0.06 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (2 , 'Raj' , 'ECE' , 'AP' , 95000 , 'raj@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO employee VALUES (2 , 'Ra' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (3, 'ami' , 'ECE' , 'AP' , 85000 , 'ami@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (3, 'ami' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (4, 'bees' , 'ECE' , 'AP' , 75000 , 'bees@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (4, 'bee' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (5, 'flyies' , 'ECE' , 'AP' , 45000 , 'flyies@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (5, 'fly' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (6, 'arpit' , 'EEE' , 'RR' , 45000 , 'flyies@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (6, 'arp' at line 1
+mysql> Query OK, 1 row affected (0.02 sec)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.02 sec)' at line 1
+mysql> CREATE TABLE employee (employee_id INT PRIMARY KEY , employee_name VARCHAR(20) , department VARCHAR(20) , designation VARCHAR(50) , salary INT , email VARCHAR(50));
+ERROR 1050 (42S01): Table 'employee' already exists
+mysql> SELECT * from employee;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO employee VALUES (1 , 'Rohit' , 'ECE' , 'AP' , 85000 , 'rohit@gmail.com');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> Query OK, 1 row affected (0.06 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (2 , 'Raj' , 'ECE' , 'AP' , 95000 , 'raj@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO employee VALUES (2 , 'Ra' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (3, 'ami' , 'ECE' , 'AP' , 85000 , 'ami@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (3, 'ami' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (4, 'bees' , 'ECE' , 'AP' , 75000 , 'bees@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (4, 'bee' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (5, 'flyies' , 'ECE' , 'AP' , 45000 , 'flyies@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (5, 'fly' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (6, 'arpit' , 'EEE' , 'RR' , 45000 , 'flyies@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (6, 'arp' at line 1
+mysql> Query OK, 1 row affected (0.02 sec)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.02 sec)' at line 1
+mysql> SELECT * from employee;
++-------------+---------------+------------+-------------+--------+-----------------+
+| employee_id | employee_name | department | designation | salary | email           |
++-------------+---------------+------------+-------------+--------+-----------------+
+|           1 | Rohit         | ECE        | AP          |  85000 | rohit@gmail.com |
++-------------+---------------+------------+-------------+--------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO employee VALUES (1 , 'Rohit' , 'ECE' , 'AP' , 85000 , 'rohit@gmail.com');
+ERROR 1062 (23000): Duplicate entry '1' for key 'employee.PRIMARY'
+mysql> Query OK, 1 row affected (0.06 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (2 , 'Raj' , 'ECE' , 'AP' , 95000 , 'raj@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO employee VALUES (2 , 'Ra' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (3, 'ami' , 'ECE' , 'AP' , 85000 , 'ami@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (3, 'ami' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (4, 'bees' , 'ECE' , 'AP' , 75000 , 'bees@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (4, 'bee' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (5, 'flyies' , 'ECE' , 'AP' , 45000 , 'flyies@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (5, 'fly' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (6, 'arpit' , 'EEE' , 'RR' , 45000 , 'flyies@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (6, 'arp' at line 1
+mysql> Query OK, 1 row affected (0.02 sec)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.02 sec)' at line 1
+mysql> DROP DATABASE employee;
+ERROR 1008 (HY000): Can't drop database 'employee'; database doesn't exist
+mysql> DROP TABLE employee;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> SELECT * FROM employee;
+ERROR 1146 (42S02): Table 'company_db.employee' doesn't exist
+mysql> CREATE TABLE employee;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> CREATE TABLE employee (employee_id INT PRIMARY KEY , employee_name VARCHAR(20) , department VARCHAR(20) , designation VARCHAR(50) , salary INT , email VARCHAR(50));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql>  INSERT INTO employee VALUES (1 , 'R' at line 1
+    -> mysql> Query OK, 1 row affected (0.06 sec)
+    ->     ->
+    ->     -> mysql> INSERT INTO employee VALUES (2 , 'Raj' , 'ECE' , 'AP' , 95000 , 'raj@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'at line 1
+mysql> Query OK, 1 row affected (0.06 sec)
+    ->
+    -> mysql> INSERT' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.06 sec)
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    '>
+    '> mysql> INSERT INTO employee VALUES (2 , 'Ra' at line 1
+    '> mysql> Query OK, 1 row affected (0.03 sec)
+    '>     ->
+    '>     -> mysql> INSERT INTO employee VALUES (3, 'ami' , 'ECE' , 'AP' , 85000 , 'ami@gmail.com');
+    '> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (3, 'ami' at line 1
+    -> mysql> Query OK, 1 row affected (0.03 sec)
+    ->     ->
+    ->     -> mysql> INSERT INTO employee VALUES (4, 'bees' , 'ECE' , 'AP' , 75000 , 'bees@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    '>
+    '> mysql> INSERT INTO employee VALUES (4, 'bee' at line 1
+    '> mysql> Query OK, 1 row affected (0.03 sec)
+    '>     ->
+    '>     -> mysql> INSERT INTO employee VALUES (5, 'flyies' , 'ECE' , 'AP' , 45000 , 'flyies@gmail.com');
+    '> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (5, 'fly' at line 1
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> INSERT INTO employee VALUES (2 , 'Raj' , 'ECE' , 'AP' , 95000 , 'raj@gmail.com');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> INSERT INTO employee VALUES (3, 'ami' , 'ECE' , 'AP' , 85000 , 'ami@gmail.com');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT * FROM employee;
++-------------+---------------+------------+-------------+--------+---------------+
+| employee_id | employee_name | department | designation | salary | email         |
++-------------+---------------+------------+-------------+--------+---------------+
+|           2 | Raj           | ECE        | AP          |  95000 | raj@gmail.com |
+|           3 | ami           | ECE        | AP          |  85000 | ami@gmail.com |
++-------------+---------------+------------+-------------+--------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> DROP TABLE employee;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> CREATE TABLE employee (employee_id INT PRIMARY KEY , employee_name VARCHAR(20) , department VARCHAR(20) , designation VARCHAR(50) , salary INT , email VARCHAR(50));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> INSERT INTO employee VALUES (2 , 'Raj' , 'ECE' , 'AP' , 95000 , 'raj@gmail.com');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT *FROM employee;
++-------------+---------------+------------+-------------+--------+---------------+
+| employee_id | employee_name | department | designation | salary | email         |
++-------------+---------------+------------+-------------+--------+---------------+
+|           2 | Raj           | ECE        | AP          |  95000 | raj@gmail.com |
++-------------+---------------+------------+-------------+--------+---------------+
+1 row in set (0.00 sec)
+
+mysql> DROP TABLE employee;
+Query OK, 0 rows affected (0.07 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

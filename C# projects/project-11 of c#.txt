@@ -1,0 +1,36 @@
+using System;
+
+
+
+class Student
+{
+    int rollno;
+    string name;
+    string section;
+    int marks;
+    
+    public void setData(int rollno , string name , string section , int marks)
+    {
+        this.rollno = rollno;
+        this.name = name;
+        this.section = section;
+        this.marks = marks;
+    }
+    
+    public void getData()
+    {
+        Console.WriteLine("Student rollNo : "+rollno);
+        Console.WriteLine("Student name : "+name);
+        Console.WriteLine("Student section : "+section);
+        Console.WriteLine("Student marks : "+marks);
+    }
+}
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+       Student s1 = new Student();
+       s1.setData(195,"Shakshi","4BCA02" , 99 );
+       s1.getData();
+    }
+}

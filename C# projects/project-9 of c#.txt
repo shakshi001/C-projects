@@ -1,0 +1,78 @@
+using System;
+
+
+
+class information
+{
+    string name;
+    int rollno;
+    public void info(string name , int rollno)
+    {
+        this.name = name;
+        this.rollno = rollno;
+        
+        Console.WriteLine("Student Name : "+name);
+        Console.WriteLine("Student RollNo : " +rollno);
+        Console.WriteLine("Student verified ...");
+    }
+}
+
+class BooksAvailable
+{
+    public void bookavail()
+    {
+        Console.WriteLine("Chetan Bhagat - story and friction");
+        Console.WriteLine("Atomic Habits");
+        Console.WriteLine("Death - sadhaguru");
+        Console.WriteLine("Hyperfocus");
+        Console.WriteLine("Click here for more....");
+    }
+}
+class Borrow:information
+{
+    public void booksborrow(string name)
+    {
+        Console.WriteLine("Book Borrowed "+name);
+    }
+}
+
+class Return:information
+{
+    public void returnbook(string name)
+    {
+        Console.WriteLine("Book returned "+name);
+    }
+}
+
+class NewArrival:BooksAvailable
+{
+    public void newarrival()
+    {
+        Console.WriteLine("Thousand splendid miles");
+        Console.WriteLine("Power");
+        Console.WriteLine("Death - sadhaguru");
+        Console.WriteLine("Hyperfocus");
+        Console.WriteLine("Click here for more....");
+    }
+}
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        
+        Console.WriteLine("Library Mangement System");
+        NewArrival s1 = new NewArrival();
+        s1.bookavail();
+        s1.newarrival();
+        
+        Borrow s2 = new Borrow();
+        s2.info("shakshi" , 195);
+        s2.booksborrow("chetan bhagat");
+        
+        
+        Return s3 = new Return();
+        s3.info("saniya", 193);
+        s3.returnbook("Power");
+        
+    }
+}

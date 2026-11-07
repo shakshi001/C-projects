@@ -1,0 +1,57 @@
+If you're learning recursion/backtracking using the “Take / Not Take” pattern, these LeetCode problems are great practice.
+
+🟢 Beginner
+LeetCode 78 — Subsets
+
+Take or don't take each element.
+
+Learn the basic recursion tree.
+
+⭐ Most important problem for this pattern.
+
+LeetCode 90 — Subsets II
+
+Same idea as Subsets, but with duplicates.
+
+Learn how to avoid duplicate answers.
+
+LeetCode 77 — Combinations
+
+Choose k elements from n.
+
+Take/not-take thinking + backtracking.
+
+LeetCode 39 — Combination Sum
+
+Take an element multiple times or skip it.
+
+Excellent for understanding recursion with changing indices.
+
+LeetCode 40 — Combination Sum II
+
+Each element can generally be used once.
+
+Introduces duplicate handling.
+
+🟡 Intermediate
+LeetCode 46 — Permutations
+
+Slightly different from pure take/not-take.
+
+Good next step after subsets.
+
+LeetCode 216 — Combination Sum III
+
+Choose k numbers that sum to n.
+
+Good practice for multiple constraints.
+
+LeetCode 17 — Letter Combinations of a Phone Number
+
+Recursive choice at every level.
+
+LeetCode 22 — Generate Parentheses
+
+Recursion with two choices.
+
+Great for understanding state/pruning.

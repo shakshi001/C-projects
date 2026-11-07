@@ -1,0 +1,25 @@
+1. mongoose-aggregate-paginate for using aggregation pipeline
+npm i mongoose-aggregate-paginate-v2
+2.Hooks (middle ware)
+preHooks -> just before saving the database
+postHooks -> just after saving the database
+install bcrypt
+3.bcrypt and bcrpypt.js 
+4. async function 
+5.arrow function
+6.encrpting the password using 
+bcrypt 
+7.accesstoken and refreshtoken
+8.JWT token 
+stateless authetication
+payload
+9.npm i jsonwebtoken
+10.cryptomodules -> node.js
+11.cloudniary->sign up 
+12.file handling using express
+install npm i cookie-parser
+13.multer
+npm i multer
+save it in disk
+14.npm i cloudinary
+15.fs method in node

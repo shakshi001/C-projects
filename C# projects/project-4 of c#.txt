@@ -1,0 +1,24 @@
+using System;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+      int principle;
+      int rate;
+      int time;
+      int Number;
+      int SI;
+      double CI;
+      Console.WriteLine("enter the  value of P , R , T and N");
+      principle = Convert.ToInt32(Console.ReadLine());
+      rate = Convert.ToInt32(Console.ReadLine());
+      time = Convert.ToInt32(Console.ReadLine());
+      Number = Convert.ToInt32(Console.ReadLine());
+      SI = ((principle * rate * time)/100);
+      Console.WriteLine("Your Simple Interest is : "+SI);
+      CI = principle* Math.Pow((1 + (rate/Number)),(Number*time));
+      Console.WriteLine("Your Compound Interest is:  "+ CI);
+      
+    }
+}

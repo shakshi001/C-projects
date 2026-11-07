@@ -1,0 +1,40 @@
+ CREATE TABLE employee (employee_id INT PRIMARY KEY , employee_name VARCHAR(20) , department VARCHAR(20) , designation VARCHAR(50) , salary INT , email VARCHAR(50));
+
+ INSERT INTO employee VALUES (1 , 'R' at line 1
+mysql> Query OK, 1 row affected (0.06 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (2 , 'Raj' , 'ECE' , 'AP' , 95000 , 'raj@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO employee VALUES (2 , 'Ra' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (3, 'ami' , 'ECE' , 'AP' , 85000 , 'ami@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (3, 'ami' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (4, 'bees' , 'ECE' , 'AP' , 75000 , 'bees@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (4, 'bee' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> INSERT INTO employee VALUES (5, 'flyies' , 'ECE' , 'AP' , 45000 , 'flyies@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employee VALUES (5, 'fly' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+1 row in set (0.00 sec)
+
+mysql> DROP TABLE employee;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> SHOW TABLES;
++----------------------+
+| Tables_in_company_db |
++----------------------+
+| employee             |
++----------------------+
+1 row in set (0.01 sec)
